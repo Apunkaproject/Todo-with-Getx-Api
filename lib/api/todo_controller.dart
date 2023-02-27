@@ -53,11 +53,12 @@ class TodoController extends GetxController {
     }
   }
 
+// Delete Todo
   Future<void> deleteTodo(id) async {
     isLoading.value = true;
     final response = "".obs;
     final res = await http.delete(
-      Uri.parse(Base_url + id),
+      Uri.parse("https://63e9ccf2e0ac9368d644794c.mockapi.io/api/todos/$id"),
     );
     if (res.statusCode == 200) {
       response.value = res.body;
@@ -70,6 +71,7 @@ class TodoController extends GetxController {
     }
   }
 
+// Update Todo
   Future<void> updateTodo(id, title) async {
     final response = "".obs;
     final res = await http.put(

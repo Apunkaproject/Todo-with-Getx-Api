@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:todo/api/todo_controller.dart';
 
+import '../api/Todos_controller.dart';
 import '../config/constant.dart';
 
 class FloatingButton extends StatelessWidget {
@@ -40,8 +41,7 @@ class FloatingButton extends StatelessWidget {
               SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  todoController.postTodos(text.text);
-                  print(text.text);
+                  todoController.postTodo(text.text);
                   Get.back();
                   text.clear();
                 },

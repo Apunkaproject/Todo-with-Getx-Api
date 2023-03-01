@@ -3,10 +3,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:todo/api/todo_controller.dart';
 import 'package:todo/config/constant.dart';
 import 'package:todo/widgets/floating_button.dart';
 
+import '../api/Todos_controller.dart';
 import '../widgets/MyBottomSheet.dart';
 
 class HomePage extends StatelessWidget {
@@ -39,70 +39,64 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 40),
-                Obx(
-                  () => todoController.isLoading.value
-                      ? Lottie.network(
-                          "https://assets2.lottiefiles.com/packages/lf20_gbfwtkzw.json")
-                      : SingleChildScrollView(
-                          child: InkWell(
-                            onTap: () {
-                              Get.bottomSheet(MyBottomSheet());
-                            },
-                            child: Column(
+                InkWell(
+                    onTap: () {
+                      Get.bottomSheet(MyBottomSheet());
+                    },
+                    child: Obx(
+                      () => todoController.isLoading.value
+                          ? Lottie.network(
+                              "https://assets1.lottiefiles.com/packages/lf20_tsxbtrcu.json")
+                          : Column(
                               // crossAxisAlignment: CrossAxisAlignment.start,
                               children: todoController.todoList
-                                  .map((e) => Container(
-                                        margin: EdgeInsets.all(10),
-                                        padding: EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
-                                          color: whitecolor,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Flexible(
-                                                child: RichText(
-                                                    text: TextSpan(
-                                                  text: e.todoTitle.toString(),
-                                                  style: TextStyle(
-                                                    fontSize: 18,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                                )),
-                                              ),
-                                              InkWell(
-                                                onTap: () {
-                                                  todoController
-                                                      .deleteTodo(e.id);
-                                                },
-                                                child: Container(
-                                                  padding: EdgeInsets.all(10),
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.blue,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                  ),
-                                                  child: Center(
-                                                    child: Icon(
-                                                      Icons.delete,
-                                                      color: whitecolor,
-                                                    ),
+                                  .map(
+                                    (e) => Container(
+                                      margin: EdgeInsets.all(10),
+                                      padding: EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                        color: whitecolor,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Flexible(
+                                              child: RichText(
+                                                  text: TextSpan(
+                                                text: e.todoTitle.toString(),
+                                                style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                              )),
+                                            ),
+                                            InkWell(
+                                              onTap: () {
+                                                todoController.deleteTodo(e.id);
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.all(10),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.blue,
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                                child: Center(
+                                                  child: Icon(
+                                                    Icons.delete,
+                                                    color: whitecolor,
                                                   ),
                                                 ),
-                                              )
-                                            ]),
-                                      ))
-                                  .toList(),
-                            ),
-                          ),
-                        ),
-                ),
+                                              ),
+                                            )
+                                          ]),
+                                    ),
+                                  )
+                                  .toList()),
+                    )),
               ],
             ),
           )),

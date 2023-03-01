@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: bgcolor,
       ),
-      home: HomePage(),
+      home:const  HomePage(),
       // home: SearchPage(),
     );
   }

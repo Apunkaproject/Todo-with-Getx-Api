@@ -12,7 +12,6 @@ class MyBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TodoController todoController = Get.put(TodoController());
     TextEditingController text = TextEditingController();
     return Container(
       padding: EdgeInsets.all(30),
@@ -38,7 +37,7 @@ class MyBottomSheet extends StatelessWidget {
           SizedBox(height: 30),
           ElevatedButton(
             onPressed: () {
-              todoController.postTodos(text.text);
+              // todoController.postTodos(text.text);
               print(text.text);
               Get.back();
               text.clear();
